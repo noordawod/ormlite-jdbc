@@ -25,6 +25,7 @@ public class OracleDatabaseType extends BaseDatabaseType {
 	private final static String DATABASE_NAME = "Oracle";
 	private static final String BOOLEAN_INTEGER_FORMAT = "integer";
 
+	@Override
 	public boolean isDatabaseUrlThisType(String url, String dbTypePart) {
 		return DATABASE_URL_PORTION.equals(dbTypePart);
 	}
@@ -34,13 +35,14 @@ public class OracleDatabaseType extends BaseDatabaseType {
 		return DRIVER_CLASS_NAME;
 	}
 
+	@Override
 	public String getDatabaseName() {
 		return DATABASE_NAME;
 	}
 
 	@Override
 	protected void appendStringType(StringBuilder sb, FieldType fieldType, int fieldWidth) {
-		sb.append("VARCHAR2(").append(fieldWidth).append(")");
+		sb.append("VARCHAR2(").append(fieldWidth).append(')');
 	}
 
 	@Override
