@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<!-- ormlite configuration file for Maven (http://maven.apache.org/) -->
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.j256.ormlite</groupId>
 	<artifactId>ormlite-jdbc</artifactId>
-	<version>5.0-SNAPSHOT</version>
+	<version>5.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>ORMLite JDBC</name>
 	<url>http://ormlite.sourceforge.net/</url>
@@ -192,7 +191,7 @@
 						</goals>
 						<configuration>
 							<showPackage>false</showPackage>
-							<additionalparam>-tag inheritDoc:X -Xdoclint:none</additionalparam>
+							<additionalparam>-tag inheritDoc:X</additionalparam>
 						</configuration>
 					</execution>
 				</executions>
@@ -203,7 +202,7 @@
 						&lt;a
 						href="http://creativecommons.org/licenses/by-sa/3.0/" &gt;Creative Commons Attribution-Share Alike 3.0 License.
 						&lt;/a&gt; </bottom>
-					<additionalparam>-tag inheritDoc:X -Xdoclint:none</additionalparam>
+					<additionalparam>-tag inheritDoc:X</additionalparam>
 					<excludePackageNames>com.j256.ormlite.stmt.query,com.j256.ormlite.stmt.mapped
 					</excludePackageNames>
 				</configuration>

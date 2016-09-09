@@ -25,14 +25,16 @@ public class JdbcDatabaseResults implements DatabaseResults {
 	private final ResultSet resultSet;
 	private final ResultSetMetaData metaData;
 	private final ObjectCache objectCache;
+	private final boolean cacheStore;
 	private boolean first = true;
 
-	public JdbcDatabaseResults(PreparedStatement preparedStmt, ResultSet resultSet, ObjectCache objectCache)
-			throws SQLException {
+	public JdbcDatabaseResults(PreparedStatement preparedStmt, ResultSet resultSet, ObjectCache objectCache,
+			boolean cacheStore) throws SQLException {
 		this.preparedStmt = preparedStmt;
 		this.resultSet = resultSet;
 		this.metaData = resultSet.getMetaData();
 		this.objectCache = objectCache;
+		this.cacheStore = cacheStore;
 	}
 
 	@Override
@@ -179,13 +181,27 @@ public class JdbcDatabaseResults implements DatabaseResults {
 	}
 
 	@Override
+	public Object getObject(int columnIndex) throws SQLException {
+		return resultSet.getObject(columnIndex + 1);
+	}
+
+	@Override
 	public boolean wasNull(int columnIndex) throws SQLException {
 		return resultSet.wasNull();
 	}
 
 	@Override
-	public ObjectCache getObjectCache() {
+	public ObjectCache getObjectCacheForRetrieve() {
 		return objectCache;
+	}
+
+	@Override
+	public ObjectCache getObjectCacheForStore() {
+		if (cacheStore) {
+			return objectCache;
+		} else {
+			return null;
+		}
 	}
 
 	@Override
