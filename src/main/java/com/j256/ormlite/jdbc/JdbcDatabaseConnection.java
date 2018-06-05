@@ -31,7 +31,7 @@ import com.j256.ormlite.support.GeneratedKeyHolder;
  */
 public class JdbcDatabaseConnection implements DatabaseConnection {
 
-	private static final String JDBC_VERSION = "VERSION__4.49-SNAPSHOT__";
+	private static final String JDBC_VERSION = "VERSION__5.1-SNAPSHOT__";
 
 	private static Logger logger = LoggerFactory.getLogger(JdbcDatabaseConnection.class);
 	private static final String JDBC_META_TABLE_NAME_COLUMN = "TABLE_NAME";
@@ -120,6 +120,11 @@ public class JdbcDatabaseConnection implements DatabaseConnection {
 			connection.rollback(savepoint);
 			logger.trace("save-point {} is rolled back", obj);
 		}
+	}
+
+	@Override
+	public void releaseSavePoint(Savepoint savePoint) throws SQLException {
+		connection.releaseSavepoint(savePoint);
 	}
 
 	@Override

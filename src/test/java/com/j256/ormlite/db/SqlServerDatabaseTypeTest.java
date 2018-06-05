@@ -35,7 +35,16 @@ public class SqlServerDatabaseTypeTest extends BaseJdbcDatabaseTypeTest {
 	@Test
 	public void testEscapedEntityName() {
 		String word = "word";
-		assertEquals("\"" + word + "\"", TestUtils.appendEscapedEntityName(databaseType, word));
+		assertEquals("[" + word + "]", TestUtils.appendEscapedEntityName(databaseType, word));
+	}
+
+	@Test
+	public void testMultipartEscapedEntityName() {
+		String firstPart = "firstPart";
+		String secondPart = "secondPart";
+		String input = firstPart + "." + secondPart;
+		String expected = "[" + firstPart + "].[" + secondPart + "]";
+		assertEquals(expected, TestUtils.appendEscapedEntityName(databaseType, input));
 	}
 
 	@Override
@@ -53,7 +62,7 @@ public class SqlServerDatabaseTypeTest extends BaseJdbcDatabaseTypeTest {
 		Dao<StringId, String> dao;
 		try {
 			connectionSource.setDatabaseType(databaseType);
-			dao = createDao(StringId.class, true);
+			dao = createDao(StringId.class, false);
 		} finally {
 			connectionSource.setDatabaseType(new H2DatabaseType());
 		}
